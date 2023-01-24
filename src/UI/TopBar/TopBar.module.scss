@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.TopBar {
+    width: 100%;
+    background-color: #0066CC;
+    display: flex;
+    flex-direction: column;
+}
+
+.TopBarItem {
+    margin-bottom: 0px;
+    border-top: 0px;
+}
+
+.acc {
+    margin-right: 10px;
+    color: rgb(161, 35, 35);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    border: none;
+    font-family: Bebas Neue;
+    font-size: 18px;
+    float: left;
+}
+li a, p, img {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+img {
+    padding-left: 2px;
+}
+
+.li_right {
+    float: right;
+}

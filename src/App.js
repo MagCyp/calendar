@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { gapi } from "gapi-script";
+import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from './Home'
+import RegisterPage from './RegisterPage'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+export default function App() {
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                {/* <Route path="/" element={<TopBar />}> */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="register" element={<RegisterPage />} />
+                {/* </Route> */}
+            </Routes>
+        </BrowserRouter>
+    );
 }
-
-export default App;
