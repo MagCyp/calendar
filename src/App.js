@@ -1,14 +1,14 @@
-import { gapi } from "gapi-script";
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './Home'
 import RegisterPage from './RegisterPage'
+import { TopBar } from "./UI/TopBar/TopBar";
 
 
 
 export default function App() {
-
     return (
+      <>
+        <TopBar/>
         <BrowserRouter>
             <Routes>
                 {/* <Route path="/" element={<TopBar />}> */}
@@ -17,5 +17,6 @@ export default function App() {
                 {/* </Route> */}
             </Routes>
         </BrowserRouter>
+        </>
     );
 }

@@ -2,9 +2,36 @@
 
 .TopBar {
     width: 100%;
-    background-color: #0066CC;
+    background-color: black;
+    color: white;
+    font-weight: 500;
     display: flex;
     flex-direction: column;
+}
+
+.topWrapper {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 20px;
+
+}
+
+.navItems {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 10px;
+    flex: 1;
+}
+
+.accountItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 .TopBarItem {
@@ -12,37 +39,16 @@
     border-top: 0px;
 }
 
-.acc {
-    margin-right: 10px;
-    color: rgb(161, 35, 35);
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    border: none;
-    font-family: Bebas Neue;
-    font-size: 18px;
-    float: left;
-}
-li a, p, img {
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
+a,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
     text-decoration: none;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-img {
-    padding-left: 2px;
 }
 
-.li_right {
-    float: right;
+@media (max-width: 767px) {
+    .userName{
+        display: none;
+    }
 }
