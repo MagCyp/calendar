@@ -1,20 +1,20 @@
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import { gapi } from 'gapi-script';
 import { React, useEffect, useState } from 'react';
 
 const style = {
-  "& .MuiPickersCalendarHeader-root": {
-    '*::-webkit-scrollbar': {
+  "& .MuiCalendarPicker-root": {
+    '*::WebkitScrollbar': {
       width: '0.4em'
     },
-    '*::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+    '*::WebkitScrollbarTrack': {
+      'WebkitBoxShadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
     },
-    '*::-webkit-scrollbar-thumb': {
+    '*::WebkitScrollbarThumb': {
       backgroundColor: 'red',
       outline: '1px solid slategrey'
     }
@@ -26,27 +26,23 @@ const style = {
     "& .MuiButtonBase-root": {
       backgroundColor: 'rgba(61, 155, 55, 0.99)',
     },
-    " & .Mui-disabled":{
+    " & .Mui-disabled": {
       backgroundColor: "rgba(209, 216, 208, 0.99)"
     },
   },
-
 }
 
 export default function PickDate({ onChange, a }) {
   const [date, setValue] = useState(dayjs());
   const [events, setEvents] = useState([]);
 
-  const hoursBefore = a.hour;
+  const hoursBefore = a.hours;
   const minutesBefore = a.minutes;
 
   const calendarID = process.env.REACT_APP_CALENDAR_ID;
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   const handleChange = (newValue) => {
-    if (newValue < Date.now()) {
-      console.log("choose a new value");
-    }
     setValue(newValue);
     onChange(newValue);
   };
@@ -209,7 +205,7 @@ export default function PickDate({ onChange, a }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateTimePicker
+      <DesktopDateTimePicker
         am={false}
         ampm={false}
         ampmInClock={false}

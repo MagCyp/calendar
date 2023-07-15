@@ -1,26 +1,40 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Box, Button, Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, TextField } from '@mui/material';
+import { Box, Button, Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, styled, TextField } from '@mui/material';
 import PickDate from '../DatePicker/DatePicker';
-import { gapi } from 'gapi-script';
 import dayjs from 'dayjs';
+import addEvent from '../../services/addEvent';
 
 const names = {
   'Oliver': { hours: 1, minutes: 30 },
   'Name': { hours: 0, minutes: 45 },
   'Judi': { hours: 0, minutes: 30 }
 };
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+
+const TextFieldStyle = styled(TextField)({
+  '@media screen and (max-width:555px)':{
+    margin: '100px'
+  },
+  '& label.Mui-focused': {
+    color: 'black',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'black',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'black',
+    },
+    '&:hover fieldset': {
+      borderColor: 'black',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'black',
     },
   },
-};
-export default function MyForm(token) {
+})
+
+export default function MyForm() {
   const [firstName, setFirstName] = useState('1');
   const [lastName, setLastName] = useState('1');
   const [mobileNumber, setMobileNumber] = useState('1');
@@ -47,32 +61,6 @@ export default function MyForm(token) {
     setA({ hours: a.hours + Math.floor(a.minutes / 60), minutes: a.minutes % 60 });
   }
 
-  const addEvent = (event) => {
-    function initiate() {
-      gapi.client
-        .request({
-          path: `https://www.googleapis.com/calendar/v3/calendars/dimares53@gmail.com/events`,
-          method: "POST",
-          body: event,
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token.token}`,
-          },
-        })
-        .then(
-          (response) => {
-            return [true, response];
-          },
-          function (err) {
-            console.log(err);
-            return [false, err];
-          }
-        );
-    }
-    gapi.load("client", initiate);
-    console.log("event added")
-  };
-
   //2023-01-18T09:00:00-02:00
   var eventPattern = {
     summary: `name:${firstName}, lastName:${lastName}, number:${mobileNumber}, todo:${personName}`,
@@ -85,15 +73,14 @@ export default function MyForm(token) {
       timeZone: 'Europe/Rome',
     },
   };
-  //доробити батон, те що текст виходить за межі інпутів, та нормально застайлити календар
   //розібратись куди зберігати токен, і зробити норм сторінку для логіна якщо треба буде все ж
   return (
     <Box sx={{
-      backgroundColor: '#7575f0',
+      backgroundColor: '#ddddd5',
       width: '55vh',
       margin: 'auto',
       borderRadius: '30px',
-      border: '6px solid #6666ff',
+      border: '6px solid #7e7e67',
       padding: '50px 40px 40px',
       display: 'flex',
       justifyContent: 'center',
@@ -103,19 +90,32 @@ export default function MyForm(token) {
       },
       '& .MuiPopover-root': {
         backgroundColor: 'ffffff'
-      }
+      },
+      '@media (max-width: 555px)': {
+        width: '100%',
+        margin: 'auto',
+        marginTop: '0px',
+        height: '80vh',
+        '& .MuiFormControl-root': {
+          margin: '20px',
+          marginRight: '0px',
+          marginLeft: '0px',
+          paddingLeft: '0px',
+          paddingRight: '0px',
+        },
+      },
     }}>
-      <TextField
+      <TextFieldStyle
         label={firstName.length > 0 ? "Name" : "Please enter name..."}
         value={firstName}
         onChange={e => setFirstName(e.target.value)}
       />
-      <TextField
+      <TextFieldStyle
         label={lastName.length > 0 ? "Last Name" : "Please enter last name..."}
         value={lastName}
         onChange={e => setLastName(e.target.value)}
       />
-      <TextField
+      <TextFieldStyle
         label={mobileNumber.length > 0 ? "Mobile Number" : "Please enter mobile number..."}
         value={mobileNumber}
         onChange={e => setMobileNumber(e.target.value)}
@@ -131,12 +131,11 @@ export default function MyForm(token) {
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
-          MenuProps={MenuProps}
         >
           {Object.keys(names).map((name) => (
-            <MenuItem key={name} value={name} sx={{ backgroundColor: '#7575f0' }}>
-              <Checkbox checked={personName.indexOf(name) > -1} sx={{ backgroundColor: '#7575f0' }} />
-              <ListItemText primary={name} sx={{ backgroundColor: '#7575f0' }} />
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
             </MenuItem>
           ))}
         </Select>
@@ -147,12 +146,13 @@ export default function MyForm(token) {
         onClick={() => addEvent(eventPattern)}
         disabled={!firstName || !lastName || !mobileNumber || personName.length <= 0}
         sx={{
-          backgroundColor: '#668cff',
+          backgroundColor: '#afaf9d',
           width: '10vh',
           margin: 'auto',
           mt: '10px',
           border: '1px solid ',
           borderRadius: '15px',
+          color: 'black',
         }}
       >
         Add

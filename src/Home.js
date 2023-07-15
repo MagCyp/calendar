@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./App.module.scss";
+import style from "./HomePage.module.scss";
 import { Button, Grid, styled, Container } from "@mui/material";
 
 const Img = styled("img")({
@@ -45,10 +45,15 @@ export default function Home() {
             >
               <Button
                 variant="outlined"
+                href="/register"
                 sx={{
-                  background: "black",
+                  backgroundColor: "grey",
                   borderRadius: "20px",
-                  color: "white",
+                  color: "green",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  }
                 }}
               >
                 Register me

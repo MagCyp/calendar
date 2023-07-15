@@ -6,6 +6,7 @@ import { TopBarItem } from "./TopBarItem";
 const items = [
   { id: 1, to: "/", label: "Home" },
   { id: 2, to: "/register", label: "Register" },
+  { id: 3, to: "/gallery", label: "Gallery"}
 ];
 
 const TopBar = () => {
