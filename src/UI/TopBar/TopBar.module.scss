@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.TopBar {
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+}
+
+.topWrapper {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 20px;
+
+}
+
+.navItems {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 10px;
+    flex: 1;
+}
+
+.accountItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.TopBarItem {
+    margin-bottom: 0px;
+    border-top: 0px;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width: 767px) {
+    .userName{
+        display: none;
+    }
+}
